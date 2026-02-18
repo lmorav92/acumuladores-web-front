@@ -1,0 +1,26 @@
+.carousel-item {
+  width: 100%;
+  height: 400px; /* altura fija del banner */
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 CLAVE: rellena sin deformar */
+
+  /* Altura fija del carousel */
+#dashboardCarousel,
+#dashboardCarousel .carousel-inner,
+#dashboardCarousel .carousel-item {
+  height: 400px;
+}
+
+/* La imagen ocupa todo el alto sin deformarse */
+#dashboardCarousel .carousel-item img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;   /* CLAVE */
+}
+
+}

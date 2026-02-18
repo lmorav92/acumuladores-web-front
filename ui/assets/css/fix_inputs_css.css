@@ -1,0 +1,128 @@
+/* AGREGAR ESTE CSS AL FINAL DE TU <style> EN index.php, ANTES DE </style> */
+
+/* ===== FIX PARA INPUTS VISIBLES ===== */
+#loginModal .form-control,
+#loginModal .form-control:focus {
+    color: #000000 !important;  /* Texto negro */
+    background-color: #ffffff !important;  /* Fondo blanco */
+    -webkit-text-fill-color: #000000 !important;  /* Para navegadores webkit */
+}
+
+#loginModal .form-control::placeholder {
+    color: #6c757d !important;  /* Color del placeholder */
+    opacity: 1;
+}
+
+#loginModal .input-group-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+}
+
+/* Asegurar que el botón de toggle password sea visible */
+#togglePassword {
+    background-color: #f8f9fa !important;
+    border-color: #ced4da !important;
+    color: #495057 !important;
+}
+
+#togglePassword:hover {
+    background-color: #e9ecef !important;
+}
+
+/* ===== ESTILOS PARA MODAL DE REGISTRO ===== */
+#registerModal .form-control,
+#registerModal .form-control:focus {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+#registerModal .form-control::placeholder {
+    color: #6c757d !important;
+    opacity: 1;
+}
+
+#registerModal .input-group-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+}
+
+#registerModal .modal-content {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Fix para autocomplete de navegadores */
+#loginModal input:-webkit-autofill,
+#loginModal input:-webkit-autofill:hover,
+#loginModal input:-webkit-autofill:focus,
+#loginModal input:-webkit-autofill:active,
+#registerModal input:-webkit-autofill,
+#registerModal input:-webkit-autofill:hover,
+#registerModal input:-webkit-autofill:focus,
+#registerModal input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+     
+
+
+/* ===== FIX GLOBAL PARA INPUTS EN MODALES ===== */
+
+/* 1. Asegurar que el modal tenga un fondo sólido y el texto sea visible */
+.modal-content {
+    background-color: #ffffff !important; /* Fondo blanco sólido */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    background-color: #f8f9fa; /* Gris muy claro para cabecera */
+    color: #333333 !important;
+}
+
+.modal-title {
+    color: #333333 !important;
+    font-weight: bold;
+}
+
+/* 2. Forzar visibilidad de etiquetas y controles */
+.modal-body label {
+    color: #495057 !important; /* Gris oscuro para etiquetas */
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 3. Estilo de los Inputs para que NO sean invisibles */
+.modal-body .form-control, 
+.modal-body .form-control:focus,
+.modal-body select.form-control {
+    color: #000000 !important;          /* Texto siempre negro */
+    background-color: #ffffff !important; /* Fondo siempre blanco */
+    border: 1px solid #ced4da !important; /* Borde visible */
+    border-radius: 4px !important;
+    -webkit-text-fill-color: #000000 !important; /* Fix para navegadores Webkit */
+    opacity: 1 !important;
+    height: auto;
+}
+
+/* 4. Estilo para el placeholder (texto de ayuda interno) */
+.modal-body .form-control::placeholder {
+    color: #adb5bd !important;
+    opacity: 1;
+}
+
+/* 5. Mejora de botones en el footer */
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+/* Fix para que los selects se vean correctamente */
+.modal-body select.form-control {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+}

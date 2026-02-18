@@ -1,0 +1,267 @@
+
+/* Estilos del Calendario */
+.calendario-container {
+    background: #fff;
+    padding: 20px;
+}
+
+.calendario-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.dia-nombre {
+    text-align: center;
+    font-weight: 600;
+    color: #555;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    min-height: 400px;
+}
+
+.dia-celda {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fff;
+    position: relative;
+}
+
+.dia-celda:hover {
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.2);
+    transform: translateY(-2px);
+}
+
+.dia-celda.otro-mes {
+    background: #f8f9fa;
+    color: #ccc;
+}
+
+.dia-celda.hoy {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+}
+
+.dia-celda.seleccionado {
+    border: 2px solid #007bff;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+	
+}
+
+.dia-numero {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+	color: #ccc;
+}
+
+.dia-celda.hoy .dia-numero {
+    color: white;
+}
+
+.dia-info {
+    font-size: 11px;
+    margin-top: 8px;
+	color: #ccc;
+}
+
+.badge-turno {
+    font-size: 10px;
+    padding: 2px 6px;
+    margin: 2px;
+    display: inline-block;
+}
+
+/* Estilos de las Cards de Turnos */
+.turno-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.turno-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: #28a745;
+}
+
+.turno-card.disponible {
+    border-color: #28a745;
+    background: linear-gradient(to right, rgba(40, 167, 69, 0.05), transparent);
+}
+
+.turno-card.disponible::before {
+    background: #28a745;
+}
+
+.turno-card.reservado {
+    border-color: #ffc107;
+    background: linear-gradient(to right, rgba(255, 193, 7, 0.05), transparent);
+}
+
+.turno-card.reservado::before {
+    background: #ffc107;
+}
+
+.turno-card.en_espera {
+    border-color: #17a2b8;
+    background: linear-gradient(to right, rgba(23, 162, 184, 0.05), transparent);
+}
+
+.turno-card.en_espera::before {
+    background: #17a2b8;
+}
+
+.turno-card.atendiendo {
+    border-color: #007bff;
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.05), transparent);
+}
+
+.turno-card.atendiendo::before {
+    background: #007bff;
+}
+
+.turno-card.finalizado {
+    border-color: #6c757d;
+    background: linear-gradient(to right, rgba(108, 117, 125, 0.05), transparent);
+    opacity: 0.7;
+}
+
+.turno-card.finalizado::before {
+    background: #6c757d;
+}
+
+.turno-card.cancelado {
+    border-color: #dc3545;
+    background: linear-gradient(to right, rgba(220, 53, 69, 0.05), transparent);
+    opacity: 0.7;
+}
+
+.turno-card.cancelado::before {
+    background: #dc3545;
+}
+
+.turno-card:hover:not(.finalizado):not(.cancelado) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.turno-numero {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+}
+
+.turno-horario {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.turno-cliente {
+    font-size: 13px;
+    color: #333;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.turno-estado-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Días pasados del calendario */
+.dia-celda.pasado {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+.dia-celda.pasado:hover {
+    background-color: #f5f5f5 !important;
+    transform: none !important;
+}
+
+.turno-card.ocupado {
+    border-color: #6c757d;
+    background: linear-gradient(to right, rgba(108, 117, 125, 0.05), transparent);
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+.turno-card.ocupado::before {
+    background: #6c757d;
+}
+
+.turno-card.ocupado:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Mi turno - destacado especial */
+.turno-card .turno-cliente strong {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Icono de candado para turnos ocupados */
+.turno-card.ocupado .zmdi-lock {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+/* Badge para turno ocupado */
+.badge-secondary {
+    background-color: #6c757d !important;
+    color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .calendario-dias {
+        gap: 5px;
+    }
+    
+    .dia-celda {
+        min-height: 60px;
+        padding: 5px;
+    }
+    
+    .dia-numero {
+        font-size: 14px;
+    }
+    
+    .dia-info {
+        font-size: 9px;
+    }
+}

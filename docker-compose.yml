@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Servicio MySQL 8
+  db:
+    image: mysql:8.0
+    container_name: mysql_db_barberia
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: S3cret
+      MYSQL_DATABASE: barberia_db
+      # ELIMINA estas dos líneas completamente:
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: S3cret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network-barberia
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pS3cret"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Servicio PHP con Apache
+  web:
+    build: .
+    container_name: codeigniter_app_barberia
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_DRIVER=mysql
+      - DB_HOST=db
+      - DB_NAME=barberia_db
+      - DB_USER=root
+      - DB_PASSWORD=S3cret
+    networks:
+      - app-network-barberia
+
+  # PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_barberia
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: S3cret
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network-barberia
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network-barberia:
+    driver: bridge

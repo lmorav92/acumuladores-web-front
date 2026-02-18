@@ -1,0 +1,173 @@
+
+/* ===================================================================
+   ESTILOS MEJORADOS PARA PANEL DE NOTIFICACIONES
+   Solución al problema del border-radius con scroll
+   =================================================================== */
+
+/* Panel principal de notificaciones */
+.notifications-panel {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  padding: 0; /* Cambio importante: padding = 0 */
+  max-height: 450px;
+  overflow: hidden; /* Ocultar overflow del contenedor principal */
+  position: relative;
+}
+
+/* Header del panel (título y contador) */
+.notifications-panel-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  background: white;
+  border-radius: 15px 15px 0 0; /* Solo bordes superiores redondeados */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Contenedor con scroll */
+.notifications-panel-body {
+  max-height: 380px; /* Altura máxima para el scroll */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 1.5rem;
+  
+  /* Estilos personalizados para la barra de scroll */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #667eea #f1f3f5; /* Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) - Barra de scroll personalizada */
+.notifications-panel-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notifications-panel-body::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border-radius: 10px;
+}
+
+.notifications-panel-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.notifications-panel-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Items de notificación */
+.notification-item {
+  background: #f8f9fa;
+  border-left: 4px solid #667eea;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px; /* Bordes más pequeños para items */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-item:last-child {
+  margin-bottom: 0; /* Quitar margen del último elemento */
+}
+
+.notification-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  background: #ffffff;
+}
+
+/* Notificación activa (llamando) */
+.notification-item.llamando {
+  border-left-color: #28a745;
+  background: linear-gradient(to right, rgba(40, 167, 69, 0.1), #f8f9fa);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+  50% { 
+    opacity: 0.9;
+    box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+  }
+}
+
+/* Badge del turno */
+.turno-badge {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* Estado vacío */
+.notifications-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+}
+
+.notifications-empty i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Animación de entrada para nuevas notificaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notification-item.new {
+  animation: slideIn 0.3s ease;
+}
+
+/* Scroll suave */
+.notifications-panel-body {
+  scroll-behavior: smooth;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .notifications-panel {
+    margin-top: 2rem;
+    max-height: 400px;
+  }
+  
+  .notifications-panel-body {
+    max-height: 320px;
+  }
+}
+
+@media (max-width: 576px) {
+  .notifications-panel {
+    max-height: 350px;
+  }
+  
+  .notifications-panel-body {
+    max-height: 270px;
+  }
+  
+  .notification-item {
+    padding: 0.75rem;
+  }
+  
+  .turno-badge {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

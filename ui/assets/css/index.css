@@ -1,0 +1,997 @@
+/* =====================================================
+   SISTEMA DE ACUMULADORES - ESTILOS PRINCIPALES
+   Tema: Naranja y Grises
+   ===================================================== */
+
+:root {
+  /* Colores principales - Naranja y Grises */
+  --primary: #FF6B35;           /* Naranja vibrante */
+  --primary-dark: #E85A2A;      /* Naranja oscuro */
+  --primary-light: #FF8C61;     /* Naranja claro */
+  
+  --secondary: #3D3D3D;         /* Gris medio-oscuro */
+  --dark: #1E1E1E;              /* Gris muy oscuro (casi negro) */
+  --dark-alt: #2A2A2A;          /* Gris oscuro alternativo */
+  --light: #F5F5F5;             /* Gris muy claro */
+  --light-gray: #CCCCCC;        /* Gris claro */
+  
+  --accent: #FFB84D;            /* Amarillo-naranja para detalles */
+  --success: #28A745;
+  --danger: #DC3545;
+  --warning: #FFC107;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--dark);
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+}
+
+/* =====================================================
+   SPINNER
+   ===================================================== */
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#spinner.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+}
+
+.spinner-grow {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--primary);
+}
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+.navbar {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 100%);
+  padding: 1rem 0;
+  border-bottom: 3px solid var(--primary);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  color: var(--light) !important;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.navbar-brand:hover {
+  color: var(--primary) !important;
+}
+
+.navbar-brand i {
+  color: var(--primary);
+  font-size: 2rem;
+  vertical-align: middle;
+}
+
+.nav-link {
+  color: var(--light) !important;
+  margin: 0 10px;
+  transition: all 0.3s;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: all 0.3s;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+  border-width: 2px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+.navbar-toggler {
+  border-color: var(--primary);
+  padding: 0.5rem 0.75rem;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='%23FF6B35' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+/* =====================================================
+   CAROUSEL
+   ===================================================== */
+.carousel {
+  position: relative;
+  height: 600px;
+}
+
+.carousel-item {
+  height: 600px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(255, 107, 53, 0.3));
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 85%;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.carousel-caption h5 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+.carousel-caption h1 {
+  font-size: 4rem;
+  color: var(--light);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-caption p {
+  font-size: 1.2rem;
+  color: var(--light);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   SECCIÓN DE PRODUCTOS/SERVICIOS
+   ===================================================== */
+.services-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--dark-alt) 100%);
+  padding: 5rem 0;
+  position: relative;
+}
+
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 107, 53, 0.03) 50px,
+      rgba(255, 107, 53, 0.03) 51px
+    );
+  pointer-events: none;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title h5 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.section-title h1 {
+  color: var(--light);
+  font-size: 3rem;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--primary);
+}
+
+.service-item {
+  background: var(--dark);
+  padding: 2.5rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.service-item:hover::before {
+  left: 100%;
+}
+
+.service-item:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+}
+
+.service-item i {
+  font-size: 3.5rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.service-item:hover i {
+  transform: scale(1.1) rotate(5deg);
+  color: var(--primary-light);
+}
+
+.service-item h5 {
+  color: var(--light);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.service-item p {
+  color: var(--light-gray);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.service-item .price {
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.service-item .stock-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* =====================================================
+   PANEL DE INVENTARIO/NOTIFICACIONES
+   ===================================================== */
+.turnos-panel {
+  background: var(--secondary);
+  padding: 5rem 0;
+}
+
+.notifications-card {
+  background: var(--dark);
+  border-radius: 20px;
+  padding: 2rem;
+  height: 600px;
+  border: 3px solid var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.notifications-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.notifications-card h4 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.notification-badge {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.notifications-body {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scrollbar personalizado */
+.notifications-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.notifications-body::-webkit-scrollbar-track {
+  background: var(--secondary);
+  border-radius: 10px;
+}
+
+.notifications-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 10px;
+  border: 2px solid var(--secondary);
+}
+
+.notifications-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary-light) 0%, var(--primary) 100%);
+}
+
+.notification-item {
+  background: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: all 0.3s;
+  border-left: 4px solid var(--primary);
+  position: relative;
+}
+
+.notification-item:hover {
+  background: var(--dark-alt);
+  transform: translateX(8px);
+  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+}
+
+.notification-item.stock-bajo {
+  border-left-color: var(--warning);
+  background: rgba(255, 193, 7, 0.05);
+}
+
+.notification-item.sin-stock {
+  border-left-color: var(--danger);
+  background: rgba(220, 53, 69, 0.05);
+  animation: pulse-danger 2s infinite;
+}
+
+@keyframes pulse-danger {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+  }
+}
+
+.turno-badge,
+.product-badge {
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
+.notifications-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.notifications-empty i {
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+/* =====================================================
+   SECCIÓN DE EQUIPO
+   ===================================================== */
+.team-section {
+  background: var(--dark);
+  padding: 5rem 0;
+}
+
+.team-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  border: 2px solid var(--secondary);
+  transition: all 0.3s;
+}
+
+.team-item:hover {
+  border-color: var(--primary);
+}
+
+.team-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.team-item:hover img {
+  transform: scale(1.15);
+}
+
+.team-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--dark) 0%, transparent 100%);
+  padding: 2rem;
+  transform: translateY(60%);
+  transition: transform 0.3s;
+}
+
+.team-item:hover .team-overlay {
+  transform: translateY(0);
+}
+
+.team-overlay h5 {
+  color: var(--light);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.team-overlay p {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.team-overlay .speciality {
+  color: var(--light-gray);
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   TESTIMONIOS
+   ===================================================== */
+.testimonials-section {
+  background: var(--secondary);
+  padding: 5rem 0;
+}
+
+.testimonial-item {
+  background: var(--dark);
+  padding: 2.5rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  height: 100%;
+}
+
+.testimonial-item:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+}
+
+.testimonial-item img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  border: 4px solid var(--primary);
+  object-fit: cover;
+}
+
+.testimonial-item .rating {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.testimonial-item p {
+  color: var(--light-gray);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.testimonial-item h5 {
+  color: var(--light);
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-item span {
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.footer {
+  background: var(--dark);
+  padding: 3rem 0 1rem;
+  border-top: 3px solid var(--primary);
+}
+
+.footer h1 {
+  color: var(--light);
+}
+
+.footer i {
+  color: var(--primary);
+}
+
+.footer p, 
+.footer a {
+  color: var(--light-gray);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: var(--primary);
+}
+
+.footer-link {
+  display: block;
+  padding: 0.3rem 0;
+}
+
+.btn-lg-square {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all 0.3s;
+  margin: 0 5px;
+}
+
+.btn-lg-square:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+/* =====================================================
+   BOTÓN VOLVER ARRIBA
+   ===================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  display: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  text-align: center;
+  line-height: 55px;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+}
+
+/* =====================================================
+   MODALES
+   ===================================================== */
+.modal-content {
+  background-color: var(--dark);
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+}
+
+.modal-header {
+  border-bottom: 2px solid var(--primary);
+  background: var(--dark-alt);
+}
+
+.modal-title {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.modal-body {
+  color: var(--light);
+  padding: 2rem;
+}
+
+.close {
+  color: var(--light);
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.close:hover {
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+.form-control {
+  background-color: var(--secondary);
+  border: 1px solid #555;
+  color: var(--light);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  background-color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--light);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+.form-label {
+  color: var(--light);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+  .carousel,
+  .carousel-item {
+    height: 450px;
+  }
+  
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+  
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+  
+  .section-title h1 {
+    font-size: 2rem;
+  }
+  
+  .notifications-card {
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  
+  .service-item {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-caption h1 {
+    font-size: 2rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+  
+  .service-item i {
+    font-size: 2.5rem;
+  }
+}
+
+/* =====================================================
+   ESTILOS PARA INPUTS CON ICONOS - AGREGADOS/CORREGIDOS
+   ===================================================== */
+
+/* Input Groups - Estructura general */
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Texto del grupo (donde va el icono) */
+.input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--light-gray);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--dark-alt);
+  border: 1px solid #555;
+  border-right: none; /* Sin borde derecho para que se una al input */
+  border-radius: 8px 0 0 8px; /* Solo esquinas izquierdas redondeadas */
+  transition: all 0.3s ease;
+}
+
+/* Icono dentro del input-group-text */
+.input-group-text i {
+  color: var(--primary);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+/* Input dentro del grupo */
+.input-group .form-control {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  background-color: var(--secondary);
+  border: 1px solid #555;
+  border-left: none; /* Sin borde izquierdo para que se una al icono */
+  border-radius: 0 8px 8px 0; /* Solo esquinas derechas redondeadas */
+  color: var(--light);
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+/* Placeholder del input */
+.input-group .form-control::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+/* Estado focus del input */
+.input-group .form-control:focus {
+  background-color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--light);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+  z-index: 3;
+}
+
+/* Cuando el input tiene focus, cambiar también el borde del icono */
+.input-group .form-control:focus ~ .input-group-text,
+.input-group:focus-within .input-group-text {
+  border-color: var(--primary);
+  background-color: var(--dark-alt);
+}
+
+/* Cambiar color del icono cuando el input tiene focus */
+.input-group:focus-within .input-group-text i {
+  color: var(--primary-light);
+  transform: scale(1.1);
+}
+
+/* Form Check (checkbox recordarme) */
+.form-check-input {
+  background-color: var(--secondary);
+  border-color: #555;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+.form-check-label {
+  color: var(--light-gray);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* Link de olvidé contraseña */
+.forgot-link {
+  color: var(--primary) !important;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.forgot-link:hover {
+  color: var(--primary-light) !important;
+  text-decoration: underline;
+}
+
+/* Mejorar el botón de cerrar modal */
+.btn-close-white {
+  filter: brightness(1) invert(1);
+  opacity: 0.8;
+  transition: all 0.3s;
+}
+
+.btn-close-white:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* Animación sutil para los modales */
+.modal.fade .modal-dialog {
+  transform: scale(0.9) translateY(-50px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Mejorar contraste de textos en modal */
+.modal-body p {
+  color: var(--light-gray);
+}
+
+.modal-body a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.modal-body a:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+/* Responsive - Ajustes para móviles */
+@media (max-width: 576px) {
+  .input-group-text {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .input-group-text i {
+    font-size: 1rem;
+  }
+  
+  .input-group .form-control {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+}

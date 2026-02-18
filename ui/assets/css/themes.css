@@ -1,0 +1,273 @@
+/* ==========================================================================
+   ESTILOS PARA SISTEMA DE TEMAS - Color Switcher
+   ========================================================================== */
+
+/* Estilos base para el switcher */
+.right-sidebar {
+    position: fixed !important;
+    top: 50% !important;
+    right: -250px !important;
+    transform: translateY(-50%) !important;
+    z-index: 99999 !important;
+    width: 250px;
+    background: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;   
+    border-radius: 10px 0 0 10px;
+    padding: 20px;
+}
+
+.right-sidebar.show {
+    right: 0 !important;
+}
+
+.switcher-icon {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #007bff;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px 0 0 5px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+.switcher-icon:hover {
+    background: #0056b3;
+}
+
+.right-sidebar-content {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.switcher {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.switcher li {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.switcher li:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.switcher li.active {
+    border: 3px solid #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.5);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   TEMAS - GAUSSION TEXTURE (theme1 - theme6)
+   ========================================================================== */
+
+/* Theme 1 - Purple Gradient */
+.bg-theme.bg-theme1 {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%) !important;
+}
+.switcher li#theme1 {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Theme 2 - Orange to Yellow */
+.bg-theme.bg-theme2 {
+    background: linear-gradient(to right, #f83600 0%, #f9d423 100%) !important;
+}
+.switcher li#theme2 {
+    background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+}
+
+/* Theme 3 - Blue Gradient */
+.bg-theme.bg-theme3 {
+    background: linear-gradient(to top, #4481eb 0%, #04befe 100%) !important;
+}
+.switcher li#theme3 {
+    background: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+}
+
+/* Theme 4 - Green Gradient */
+.bg-theme.bg-theme4 {
+    background: linear-gradient(to top, #0ba360 0%, #3cba92 100%) !important;
+}
+.switcher li#theme4 {
+    background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+
+/* Theme 5 - Red Gradient */
+.bg-theme.bg-theme5 {
+    background: linear-gradient(to right, #ed213a 0%, #93291e 100%) !important;
+}
+.switcher li#theme5 {
+    background: linear-gradient(to right, #ed213a 0%, #93291e 100%);
+}
+
+/* Theme 6 - Purple to Blue */
+.bg-theme.bg-theme6 {
+    background: linear-gradient(to right, #b224ef 0%, #7579ff 100%) !important;
+}
+.switcher li#theme6 {
+    background: linear-gradient(to right, #b224ef 0%, #7579ff 100%);
+}
+
+/* ==========================================================================
+   TEMAS - GRADIENT BACKGROUND (theme7 - theme15)
+   ========================================================================== */
+
+/* Theme 7 - Purple Diagonal */
+.bg-theme.bg-theme7 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+.switcher li#theme7 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Theme 8 - Pink to Red */
+.bg-theme.bg-theme8 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+.switcher li#theme8 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Theme 9 - Sky Blue */
+.bg-theme.bg-theme9 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+.switcher li#theme9 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Theme 10 - Mint Green */
+.bg-theme.bg-theme10 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+}
+.switcher li#theme10 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Theme 11 - Sunset */
+.bg-theme.bg-theme11 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%) !important;
+}
+.switcher li#theme11 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Theme 12 - Turquoise to Purple */
+.bg-theme.bg-theme12 {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%) !important;
+}
+.switcher li#theme12 {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+/* Theme 13 - Pastel Dream */
+.bg-theme.bg-theme13 {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) !important;
+}
+.switcher li#theme13 {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Theme 14 - Rose Pink */
+.bg-theme.bg-theme14 {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) !important;
+}
+.switcher li#theme14 {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+/* Theme 15 - Peach */
+.bg-theme.bg-theme15 {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+}
+.switcher li#theme15 {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+/* ==========================================================================
+   ESTILOS ADICIONALES PARA ELEMENTOS CON TEMA
+   ========================================================================== */
+
+/* Ajustar el color del texto según el tema */
+.bg-theme {
+    color: #fff;
+}
+
+/* Ajustar elementos internos cuando se aplica un tema */
+.bg-theme .card {
+    background:'transparent' !important;
+}
+
+.bg-theme .navbar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+}
+
+.bg-theme .sidebar {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .right-sidebar {
+        width: 200px;
+        right: -200px;
+    }
+    
+    .switcher li {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.zmdi-hc-spin {
+    animation: spin 2s linear infinite;
+}
+
+/* Efecto de aparición suave del switcher */
+@keyframes slideIn {
+    from {
+        right: -250px;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+.right-sidebar.show {
+    animation: slideIn 0.3s ease-out;
+}
