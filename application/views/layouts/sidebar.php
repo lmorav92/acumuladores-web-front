@@ -45,12 +45,7 @@
           <a href="javascript:void(0);" class="menu-link" data-page="categorias">
             <i class="zmdi zmdi-view-list"></i> Categorías
           </a>
-        </li>
-        <li>
-          <a href="javascript:void(0);" class="menu-link" data-page="marcas">
-            <i class="zmdi zmdi-tag"></i> Marcas
-          </a>
-        </li>
+        </li>        
         <li>
           <a href="javascript:void(0);" class="menu-link" data-page="stock">
             <i class="zmdi zmdi-storage"></i> Control de Stock
@@ -87,11 +82,7 @@
             <i class="zmdi zmdi-file-text"></i> Cotizaciones
           </a>
         </li>
-        <li>
-          <a href="javascript:void(0);" class="menu-link" data-page="facturas">
-            <i class="zmdi zmdi-receipt"></i> Facturas
-          </a>
-        </li>
+       
       </ul>
     </li>
 
@@ -148,7 +139,7 @@
     </li>
 
     <!-- Caja -->
-    <li>
+    <!-- <li>
       <a href="javaScript:void();" class="waves-effect">
         <i class="zmdi zmdi-money-box"></i>
         <span>Caja</span>
@@ -171,7 +162,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li> -->
 
     <!-- Reportes -->
     <li>
@@ -482,8 +473,7 @@
 
 .sidebar-header {
   background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 5px;  
   border-radius: 8px;
   margin: 10px;
 }

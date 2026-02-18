@@ -7,17 +7,19 @@
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <input type="text" id="clienteSearch" class="form-control" placeholder="Buscar por nombre, carnet, email o teléfono...">
+                    <input type="text" id="clienteSearch" class="form-control" placeholder="Buscar por nombre, RUC/DNI, email o teléfono...">
                 </div>
-                
+
                 <div class="table-responsive">
                     <table class="table table-striped" id="tableClientes">
                         <thead>
                             <tr>
-                                <th>Nombre Completo</th>
-                                <th>Carnet</th>
+                                <th>Tipo</th>
+                                <th>Nombre Completo / Razón Social</th>
+                                <th>RUC / DNI</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -30,6 +32,7 @@
     </div>
 </div>
 
+<!-- Modal Cliente -->
 <div class="modal fade" id="modalCliente" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -39,18 +42,58 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="id_cliente" id="id_cliente">
+
                     <div class="row">
+                        <!-- Tipo de Cliente -->
                         <div class="col-md-6 mb-2">
-                            <label>Nombre <span class="text-danger">*</span></label>
-                            <input type="text" name="nombre" class="form-control" required>
+                            <label>Tipo de Cliente <span class="text-danger">*</span></label>
+                            <select name="tipo_cliente" id="tipo_cliente" class="form-control" onchange="toggleTipoCliente(this.value)">
+                                <option value="PERSONA">Persona</option>
+                                <option value="EMPRESA">Empresa</option>
+                            </select>
                         </div>
+
+                        <!-- Estado -->
                         <div class="col-md-6 mb-2">
-                            <label>Apellidos <span class="text-danger">*</span></label>
-                            <input type="text" name="apellidos" class="form-control" required>
+                            <label>Estado</label>
+                            <select name="estado" class="form-control">
+                                <option value="ACTIVO">Activo</option>
+                                <option value="INACTIVO">Inactivo</option>
+                            </select>
                         </div>
+
+                        <!-- Campos PERSONA -->
+                        <div id="campos_persona">
+                            <div class="row w-100 mx-0">
+                                <div class="col-md-6 mb-2">
+                                    <label>Nombre <span class="text-danger">*</span></label>
+                                    <input type="text" name="nombre" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label>Apellidos <span class="text-danger">*</span></label>
+                                    <input type="text" name="apellidos" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label>Fecha de Nacimiento</label>
+                                    <input type="date" name="fecha_nacimiento" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Campos EMPRESA -->
+                        <div id="campos_empresa" style="display:none;">
+                            <div class="row w-100 mx-0">
+                                <div class="col-md-12 mb-2">
+                                    <label>Razón Social <span class="text-danger">*</span></label>
+                                    <input type="text" name="razon_social" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Campos comunes -->
                         <div class="col-md-6 mb-2">
-                            <label>Carnet <span class="text-danger">*</span></label>
-                            <input type="text" name="carnet" class="form-control" maxlength="11" required>
+                            <label>RUC / DNI <span class="text-danger">*</span></label>
+                            <input type="text" name="ruc_dni" class="form-control" maxlength="20">
                         </div>
                         <div class="col-md-6 mb-2">
                             <label>Email</label>
@@ -80,24 +123,53 @@
 </div>
 
 <script>
-// Lógica AJAX para Clientes
+function toggleTipoCliente(tipo) {
+    if (tipo === 'EMPRESA') {
+        $('#campos_empresa').show();
+        $('#campos_persona').hide();
+        $('[name="nombre"]').removeAttr('required');
+        $('[name="apellidos"]').removeAttr('required');
+        $('[name="razon_social"]').attr('required', true);
+    } else {
+        $('#campos_persona').show();
+        $('#campos_empresa').hide();
+        $('[name="nombre"]').attr('required', true);
+        $('[name="apellidos"]').attr('required', true);
+        $('[name="razon_social"]').removeAttr('required');
+    }
+}
+
 function loadClientes() {
     console.log("Cargando lista de clientes...");
-    
+
     $.ajax({
         url: '<?= base_url("clientes/list") ?>',
         type: 'GET',
         dataType: 'json',
         success: function(data) {
             let html = '';
-            if(data.clientes && data.clientes.length > 0) {
+            if (data.success && data.clientes && data.clientes.length > 0) {
                 data.clientes.forEach(c => {
+                    const nombreMostrar = c.TipoCliente === 'EMPRESA'
+                        ? (c.RazonSocial || c.NombreCompleto)
+                        : c.NombreCompleto;
+
+                    const badgeTipo = c.TipoCliente === 'EMPRESA'
+                        ? '<span class="badge badge-info">Empresa</span>'
+                        : '<span class="badge badge-secondary">Persona</span>';
+
+                    const badgeEstado = c.EstadoCliente === 'ACTIVO'
+                        ? '<span class="badge badge-success">Activo</span>'
+                        : '<span class="badge badge-danger">Inactivo</span>';
+
                     html += `
                         <tr>
-                            <td>${c.NombreCompleto}</td>
-                            <td>${c.CarnetCliente}</td>
+                            <td>${badgeTipo}</td>
+                            <td>${nombreMostrar}</td>
+                            <td>${c.RUC_DNI || 'N/A'}</td>
                             <td>${c.Email || 'N/A'}</td>
                             <td>${c.Telefono || 'N/A'}</td>
+                            <td>${badgeEstado}</td>
                             <td>
                                 <button class="btn btn-sm btn-primary" onclick='editCliente(${JSON.stringify(c)})'>
                                     <i class="zmdi zmdi-edit"></i>
@@ -108,15 +180,18 @@ function loadClientes() {
                             </td>
                         </tr>`;
                 });
+            } else if (!data.success) {
+                console.error('Error del servidor:', data.message, data.error_detail || '');
+                html = `<tr><td colspan="7" class="text-center text-danger">Error: ${data.message}</td></tr>`;
             } else {
-                html = '<tr><td colspan="5" class="text-center">No hay clientes registrados</td></tr>';
+                html = '<tr><td colspan="7" class="text-center">No hay clientes registrados</td></tr>';
             }
             $('#tbodyClientes').html(html);
         },
         error: function(xhr, status, error) {
             console.error("Error en la petición:", error);
             console.log("Respuesta del servidor:", xhr.responseText);
-            $('#tbodyClientes').html('<tr><td colspan="5" class="text-center text-danger">Error al cargar datos. Revisa la consola.</td></tr>');
+            $('#tbodyClientes').html('<tr><td colspan="7" class="text-center text-danger">Error al cargar datos. Revisa la consola.</td></tr>');
         }
     });
 }
@@ -124,10 +199,11 @@ function loadClientes() {
 function deleteCliente(id) {
     Swal.fire({
         title: '¿Estás seguro?',
-        text: "Se eliminará el cliente y todos sus datos relacionados",
+        text: "Se eliminará el cliente permanentemente",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sí, eliminar'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -136,7 +212,7 @@ function deleteCliente(id) {
                 type: 'GET',
                 dataType: 'json',
                 success: function(res) {
-                    if(res.success) {
+                    if (res.success) {
                         Swal.fire('Eliminado', 'Cliente borrado con éxito', 'success');
                         loadClientes();
                     } else {
@@ -145,7 +221,6 @@ function deleteCliente(id) {
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
-                    console.log('Respuesta:', xhr.responseText);
                     Swal.fire('Error', 'Ocurrió un error al eliminar', 'error');
                 }
             });
@@ -157,32 +232,38 @@ function newCliente() {
     $('#formCliente')[0].reset();
     $('#id_cliente').val('');
     $('#modalTitle').text('Nuevo Cliente');
+    toggleTipoCliente('PERSONA');
     $('#modalCliente').modal('show');
 }
 
 function editCliente(c) {
     $('#id_cliente').val(c.IdCliente);
+    $('[name="tipo_cliente"]').val(c.TipoCliente);
+    toggleTipoCliente(c.TipoCliente);
     $('[name="nombre"]').val(c.NombreCliente);
     $('[name="apellidos"]').val(c.ApellidosCliente);
-    $('[name="carnet"]').val(c.CarnetCliente);
+    $('[name="razon_social"]').val(c.RazonSocial);
+    $('[name="ruc_dni"]').val(c.RUC_DNI);
     $('[name="email"]').val(c.Email);
     $('[name="telefono"]').val(c.Telefono);
     $('[name="direccion"]').val(c.DireccionCliente);
+    $('[name="fecha_nacimiento"]').val(c.FechaNacimiento);
     $('[name="avatar"]').val(c.Avatar);
+    $('[name="estado"]').val(c.EstadoCliente);
     $('#modalTitle').text('Editar Cliente');
     $('#modalCliente').modal('show');
 }
 
-// Inicializar
+// Inicializar módulo
 (function() {
     console.log("Iniciando módulo Clientes...");
-    
+
     loadClientes();
 
     $('#clienteSearch').off('keyup').on('keyup', function() {
         var value = $(this).val().toLowerCase();
         $("#tbodyClientes tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
     });
 
@@ -195,8 +276,8 @@ function editCliente(c) {
             dataType: 'json',
             success: function(res) {
                 $('#modalCliente').modal('hide');
-                if(res.success) {
-                    Swal.fire('Éxito', 'Registro insertado con éxito', 'success');
+                if (res.success) {
+                    Swal.fire('Éxito', 'Registro guardado con éxito', 'success');
                     loadClientes();
                 } else {
                     Swal.fire('Error', res.message || 'No se pudo guardar', 'error');

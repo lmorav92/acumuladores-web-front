@@ -188,7 +188,7 @@
 .search-bar a {
   position: absolute;
   right: 15px;
-  top: 50%;
+  top: 10%;
   transform: translateY(-50%);
   color: #FF6B35;
   font-size: 18px;
@@ -210,7 +210,7 @@
 
 /* Badges */
 .badge-up {
-  position: absolute;
+  position: relative;
   top: 5px;
   right: 5px;
   padding: 3px 6px;
